@@ -8,12 +8,49 @@ body{background:#f5f7fb;font-family:Inter,Arial,sans-serif;padding:20px;}h2{text
 .tablink.active{background:#4c7cf6;color:#fff;}
 .tabcontent{display:none;}
 .container{display:flex;gap:20px;}
-.left{width:50%;height:820px;overflow:auto;border-radius:10px;background:#fff;padding:12px;box-shadow:0 4px 14px rgba(0,0,0,.1);}
+.left {
+    width: 50%;
+    height: 820px;
+    overflow: auto;
+    border-radius: 10px;
+    background: white;
+    padding: 0 12px 12px 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+tr {
+    scroll-snap-align: start;
+}
 .right{width:50%;height:720px;padding:14px;border-radius:10px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.1);}
 table{width:100%;border-collapse:collapse;font-size:13px;}
-th{background:#4c7cf6;color:#fff;position:sticky;top:0;padding:6px;}
-td,th{border:1px solid #e1e5ee;text-align:center;padding:5px;}
-.timecol{background:#eef2f8;font-weight:700;}
+td, th { border: 1px solid #e1e5ee; text-align: center; padding: 5px; }
+/* Sticky header */
+th {
+    background: #4c7cf6;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100; /* pastikan menang layer */
+    padding: 6px;
+    border-top: none; /* cegah garis terpisah */
+    margin: 0;
+}
+/* Sticky first column (Time) */
+.timecol {
+    background: #4c7cf6 !important;
+    color: white !important;
+    font-weight: 600;
+    text-align: center;
+
+    position: sticky;
+    left: 0;
+
+    z-index: 5;   /* di bawah th, tapi di atas td */
+    padding: 6px;
+    border-right: 1px solid #e1e5ee;
+}
 .cell:hover{background:#e9f0ff;cursor:pointer;}
 .selected{background:#cfe2ff!important;}
 .dot{width:15px;height:15px;border-radius:50%;display:inline-block;}
