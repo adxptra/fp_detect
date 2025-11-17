@@ -17,14 +17,18 @@ body{background:#f5f7fb;font-family:Inter,Arial,sans-serif;padding:20px;}h2{text
     padding: 0 12px 12px 12px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.1);
     scroll-behavior: smooth;
-    scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
 }
 tr {
     scroll-snap-align: start;
 }
 .right{width:50%;height:720px;padding:14px;border-radius:10px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.1);}
-table{width:100%;border-collapse:collapse;font-size:13px;}
+table {
+    width: 100%;
+    border-collapse: collapse; /* HAPUS sela antar sel */
+    margin: 0;
+    padding: 0;
+}
 td, th { border: 1px solid #e1e5ee; text-align: center; padding: 5px; }
 /* Sticky header */
 th {
@@ -32,8 +36,9 @@ th {
     color: white;
     position: sticky;
     top: 0;
-    z-index: 100; /* pastikan menang layer */
+    z-index: 10; /* pastikan menang layer */
     padding: 6px;
+    background-clip: padding-box;
     border-top: none; /* cegah garis terpisah */
     margin: 0;
 }
@@ -43,13 +48,13 @@ th {
     color: white !important;
     font-weight: 600;
     text-align: center;
-
     position: sticky;
     left: 0;
-
-    z-index: 5;   /* di bawah th, tapi di atas td */
+    z-index: 5;   
     padding: 6px;
     border-right: 1px solid #e1e5ee;
+    margin: 0;
+    background-clip: border-box; /* penting untuk nutup celah */
 }
 .cell:hover{background:#e9f0ff;cursor:pointer;}
 .selected{background:#cfe2ff!important;}
