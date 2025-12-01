@@ -335,14 +335,13 @@ function renderChart(){
  new Chart(document.getElementById("chartDaily"), {
    type:"line",
    data:{
-     label: "Event per Hari",
+     labels:statsDates,
      datasets:[{
+       label:"Event per Hari",
        data:statsValues,
        borderColor:"#4c7cf6",
-       backgroundColor:"#4c7cf633",
-       borderWidth:2,
-       tension:0.25,
-       pointRadius:4
+       backgroundColor:"#4c7cf633", 
+       borderWidth:2,tension:0.25,pointRadius:4
      }]
    },
    options:{
@@ -359,8 +358,9 @@ function renderHourly(){
  new Chart(document.getElementById("chartHourly"), {
    type:"bar",
    data:{
-     label: "Frekuensi Event per Jam",
+     labels:histLabels,
      datasets:[{
+       label:"Frekuensi per Jam",
        data:histValues,
        backgroundColor:"#4c7cf6aa",
        borderColor:"#4c7cf6",
