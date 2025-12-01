@@ -9,18 +9,54 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body { background:#f5f7fb; font-family:"Inter",Arial,sans-serif; padding:20px; }
-h2 { text-align:center; font-size:26px; margin-bottom:15px; }
-.tabs { display:flex; gap:10px; justify-content:center; margin-bottom:14px; }
-.tablink { background:#d9dee8; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; }
-.tablink.active { background:#4c7cf6; color:white; }
-.container { display:flex; gap:20px; }
-.left { width:50%; height:820px; overflow:auto; background:white; padding:0 12px 12px; border-radius:10px; }
-.right { width:50%; height:720px; padding:14px; background:white; border-radius:10px; }
-.timecol { background:#4c7cf6 !important; color:white !important; font-weight:600; position:sticky; left:0; }
+body {
+    background: #f5f7fb;
+    font-family: "Inter", Arial, sans-serif;
+    padding: 20px;
+}
+h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+.tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+.tablink {
+    background: #d9dee8;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.tablink.active { background: #4c7cf6; color: white; }
+.tabcontent { display: none; }
+.container { display: flex; gap: 20px; }
+.left {
+    width: 50%; height: 820px; overflow: auto;
+    border-radius: 10px; background: white;
+    padding: 0 12px 12px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.right {
+    width: 50%; height: 720px; padding: 14px; border-radius: 10px;
+    background: white; box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.timecol {
+    background: #4c7cf6 !important; color: white !important;
+    position: sticky; left: 0; font-weight: 600; text-align:center;
+}
 .dot { width:14px; height:14px; border-radius:50%; display:inline-block; }
-.green { background:#38c172; } .gray { background:#ccd1d9; }
-#viewer { width:100%; height:720px; background:#000; background-image:url("logo/Filter_Picker_Dashboard.png"); background-size:cover; border-radius:14px; margin-bottom:36px; }
+.green{ background:#38c172; } .gray{ background:#ccd1d9; }
+
+#viewer{
+    width:100%; height:720px; background:#0d1117;
+    background-image:url("logo/Filter_Picker_Dashboard.png");
+    background-size:cover; border-radius:14px; margin-bottom:36px;
+}
 </style>
 </head>
 <body>
@@ -33,9 +69,9 @@ h2 { text-align:center; font-size:26px; margin-bottom:15px; }
 <button class="tablink" onclick="openTab(event,'analysis')">📂 Analisis Seismik</button>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboard" class="tabcontent" style="display:block;">
 <div class="container">
-
 <div class="left">
 <table>
 <thead><tr><th>Time</th><th>2025-10-04</th><th>2025-10-05</th><th>2025-10-06</th><th>2025-10-07</th><th>2025-10-08</th><th>2025-10-09</th><th>2025-10-10</th><th>2025-10-11</th><th>2025-10-12</th><th>2025-10-13</th><th>2025-10-14</th><th>2025-10-15</th><th>2025-10-16</th><th>2025-10-17</th><th>2025-10-18</th><th>2025-10-19</th><th>2025-10-20</th><th>2025-10-21</th><th>2025-10-22</th><th>2025-10-23</th><th>2025-10-24</th><th>2025-10-25</th><th>2025-10-26</th><th>2025-10-27</th><th>2025-10-28</th><th>2025-10-29</th><th>2025-10-30</th><th>2025-10-31</th><th>2025-11-01</th><th>2025-11-02</th><th>2025-11-03</th><th>2025-11-04</th><th>2025-11-05</th></tr></thead>
@@ -188,25 +224,51 @@ h2 { text-align:center; font-size:26px; margin-bottom:15px; }
 </div>
 
 <div class="right">
-<div id="viewer"></div>
-<div id="info">Click green dot to preview</div>
-<a id="downloadBtn"><button class="action-btn">💾 Save</button></a>
+    <div id="viewer"></div>
+    <div id="info">Click green dot to preview</div>
+    <a id="downloadBtn"><button class="action-btn">💾 Save</button></a>
+</div>
+</div>
 </div>
 
-</div>
+<!-- STATISTICS -->
+<div id="stats" class="tabcontent">
+    <h3 style="text-align:center;">Ringkasan Deteksi</h3>
+    <b>Total hari:</b> 33<br>
+    <b>Total event:</b> 834<br>
+    <b>Slot ideal:</b> 4752<br>
+    <b>Coverage rata-rata:</b> 17.55 %<br><br>
+    <canvas id="chartDaily"></canvas><br>
+    <canvas id="chartHourly"></canvas>
 </div>
 
+<!-- ANALYSIS -->
 <div id="analysis" class="tabcontent">
-<h3>Distribusi Kategori Gempa</h3>
-<img src="stats/" style="max-width:90%;margin:0 auto;display:block;">
-<h3>Distribusi Gempa per Picker</h3>
-<img src="stats/" style="max-width:90%;margin:0 auto;display:block;">
-<h3>Cumulative Wadati Diagram</h3>
-<img src="stats/" style="max-width:90%;margin:0 auto;display:block;">
+<h3 style="text-align:center;">Distribusi Kategori Gempa</h3>
+<img src="stats/" style="max-width:90%;display:block;margin:0 auto;">
+<h3 style="text-align:center;">Distribusi Gempa per Picker</h3>
+<img src="stats/" style="max-width:90%;display:block;margin:0 auto;">
+<h3 style="text-align:center;">Cumulative Wadati Diagram</h3>
+<img src="stats/" style="max-width:90%;display:block;margin:0 auto;">
 </div>
 
 <script>
+var statsDates = ["2025-10-04", "2025-10-05", "2025-10-06", "2025-10-07", "2025-10-08", "2025-10-09", "2025-10-10", "2025-10-11", "2025-10-12", "2025-10-13", "2025-10-14", "2025-10-15", "2025-10-16", "2025-10-17", "2025-10-18", "2025-10-19", "2025-10-20", "2025-10-21", "2025-10-22", "2025-10-23", "2025-10-24", "2025-10-25", "2025-10-26", "2025-10-27", "2025-10-28", "2025-10-29", "2025-10-30", "2025-10-31", "2025-11-01", "2025-11-02", "2025-11-03", "2025-11-04", "2025-11-05"];
+var statsValues = [13, 23, 32, 19, 49, 32, 35, 16, 32, 18, 16, 26, 32, 33, 22, 39, 21, 27, 29, 19, 21, 14, 18, 28, 25, 30, 16, 18, 26, 39, 55, 9, 2];
+var histLabels = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+var histValues = [16, 24, 23, 20, 22, 30, 32, 29, 31, 41, 27, 38, 42, 47, 39, 36, 55, 55, 50, 38, 35, 44, 37, 23];
+var lastCell = null;
+
+var viewer = OpenSeadragon({
+    id: "viewer",
+    prefixUrl:"https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/"
+});
+
 function loadImage(fname, filepath, tdCell){
+    if(lastCell){ lastCell.classList.remove("selected"); }
+    tdCell.classList.add("selected");
+    lastCell = tdCell;
+
     let img_path = "image/" + fname;
     viewer.open({ type:"image", url:img_path });
     document.getElementById("info").innerText = fname;
