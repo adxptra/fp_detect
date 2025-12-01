@@ -272,7 +272,7 @@ th {
 <img src='stats/Distribusi_Gempa_per_Picker_2025-12-01.png' style='max-width:90%;display:block;margin:auto;border-radius:12px;'>
 
 <h3 style="text-align:center;margin-top:26px;">Cumulative Wadati Diagram</h3>
-<img src='stats/Cumulative_Wadati_Diagram_2025-12-01.png' style='max-width:90%;display:block;margin:auto;border-radius:12px;'>
+<img src='stats/Cumulative_Wadati_Diagram_2025-12-01.png' style='max-width:50%;display:block;margin:auto;border-radius:12px;'>
 </div>
 
 <script>
@@ -320,7 +320,7 @@ function renderChart(){
  new Chart(document.getElementById("chartDaily"), {
    type:"line",
    data:{
-     labels:statsDates,
+     label: "Event per Hari",
      datasets:[{
        data:statsValues,
        borderColor:"#4c7cf6",
@@ -344,7 +344,7 @@ function renderHourly(){
  new Chart(document.getElementById("chartHourly"), {
    type:"bar",
    data:{
-     labels:histLabels,
+     label: "Frekuensi Event per Jam",
      datasets:[{
        data:histValues,
        backgroundColor:"#4c7cf6aa",
