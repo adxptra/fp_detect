@@ -59,21 +59,6 @@ th {
 .green { background:#38c172; box-shadow:0 0 5px rgba(56,193,114,0.8); }
 .gray { background:#ccd1d9; }
 
-.analysis-img {
-    max-width:75%;
-    max-height:450px;
-    display:block;
-    margin:0 auto;
-    border-radius:12px;
-    object-fit:contain;
-    padding:6px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.12);
-    transition:transform .2s ease;
-}
-.analysis-img:hover {
-    transform:scale(1.015);
-}
-
 #viewer {
   width:100%; height:720px; background-color:#0d1117;
   background-image:url('logo/Filter_Picker_Dashboard.png');
@@ -281,13 +266,13 @@ th {
 <h2 style="text-align:center;">Analisis Seismik</h2>
 
 <h3 style="text-align:center;">Distribusi Kategori Gempa</h3>
-<img src='stats/Distribusi_Kategori_Gempa_2025-12-01.png' class='analysis-img'>
+<img src='stats/Distribusi_Kategori_Gempa_2025-12-01.png' style='max-width:90%;display:block;margin:auto;border-radius:12px;'>
 
 <h3 style="text-align:center;margin-top:26px;">Distribusi Gempa per Picker</h3>
-<img src='stats/Distribusi_Gempa_per_Picker_2025-12-01.png' class='analysis-img'>
+<img src='stats/Distribusi_Gempa_per_Picker_2025-12-01.png' style='max-width:90%;display:block;margin:auto;border-radius:12px;'>
 
 <h3 style="text-align:center;margin-top:26px;">Cumulative Wadati Diagram</h3>
-<img src='stats/Cumulative_Wadati_Diagram_2025-12-01.png' class='analysis-img'>
+<img src='stats/Cumulative_Wadati_Diagram_2025-12-01.png' style='max-width:90%;display:block;margin:auto;border-radius:12px;'>
 </div>
 
 <script>
@@ -337,7 +322,6 @@ function renderChart(){
    data:{
      labels:statsDates,
      datasets:[{
-       label:"Event per Hari",
        data:statsValues,
        borderColor:"#4c7cf6",
        backgroundColor:"#4c7cf633",
@@ -362,7 +346,6 @@ function renderHourly(){
    data:{
      labels:histLabels,
      datasets:[{
-       label:"Frekuensi per Jam",
        data:histValues,
        backgroundColor:"#4c7cf6aa",
        borderColor:"#4c7cf6",
